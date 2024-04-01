@@ -6,7 +6,7 @@ const logger = pino(
   PinoPretty({
     colorize: true,
     customPrettifiers: {
-      time: () => `🕰 :${dayjs().format()}`,
+      time: () => `[🕰 :${dayjs().format()}]`,
     },
   })
 );

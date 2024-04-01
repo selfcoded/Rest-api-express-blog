@@ -1,17 +1,15 @@
 import express from "express";
-import logger from "./utils/logger";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
+import logger from "./utils/logger";
+import routes from "./routes";
 configDotenv();
 
 //initialize the express app
 const app = express();
 const port = 4000;
 
-// test
-app.get("/", (req, res) => {
-  res.send("hallo world2");
-});
+app.use(express.json());
 
 app.listen(port, async () => {
   //mongoose connect
@@ -21,6 +19,8 @@ app.listen(port, async () => {
   } catch (error) {
     logger.error("Could not connect to DB");
   }
+
+  routes(app);
 
   logger.info(`you are listening on port ${port}`);
 });
